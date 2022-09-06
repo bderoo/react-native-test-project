@@ -1,0 +1,22 @@
+import { RouteProp } from '@react-navigation/native'
+import React from 'react'
+
+import PageContainer from '@components/pageContainer/PageContainer'
+import { Body } from '@components/text'
+import { Roots } from '@/constants'
+import Strings from '@/localization'
+import { RootStackParamList } from '@navigation'
+
+import styles from './styles'
+
+type Props = {
+  route: RouteProp<RootStackParamList, Roots.{{properCase name}}>
+}
+
+const {{properCase name}} = ({ route }: Props) => (
+  <PageContainer>
+    <Body>{Strings.{{name}}.__name}</Body>
+  </PageContainer>
+)
+
+export default {{properCase name}}

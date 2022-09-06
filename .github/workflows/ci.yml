@@ -1,0 +1,22 @@
+name: Node.js CI
+
+on:
+  pull_request:
+    branches: [ dev ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14.x'
+      - run: yarn
+      - run: yarn prestorybook
+      - run: yarn lint
+      - run: yarn typecheck
+      - run: yarn test

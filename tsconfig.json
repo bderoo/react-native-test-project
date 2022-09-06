@@ -1,10 +1,48 @@
-// prettier-ignore
 {
-  "extends": "@tsconfig/react-native/tsconfig.json",     /* Recommended React Native TSConfig base */
   "compilerOptions": {
-    /* Visit https://aka.ms/tsconfig.json to read more about this file */
-
-    /* Completeness */
-    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
-  }
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react-native",
+    "skipLibCheck": true,
+    "lib": [
+      "es2017"
+    ],
+    "module": "NodeNext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "strict": true,
+    "resolveJsonModule": true,
+    "target": "esnext",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*", "debug/*", "generated/*"],
+      "@root/*": ["./*"],
+      "@components/*": ["src/components/*", "debug/components/*", "generated/components/*"],
+      "@screens/*": ["src/screens/*", "debug/screens/*", "generated/screens/*"],
+      "@stores/*": ["src/stores/*", "debug/stores/*", "generated/stores/*"],
+      "@theme/*": ["src/theme/*", "debug/theme/*", "generated/theme/*"],
+      "@constants/*": ["src/constants/*", "debug/constants/*", "generated/constants/*"],
+      "@navigation/*": ["src/navigation/*", "debug/navigation/*", "generated/navigation/*"]
+    }
+  },
+  "files": [
+    "src/types.d.ts"
+  ],
+  "rootDirs": [
+    "src",
+    "generated",
+    "debug"
+  ],
+  "include": [
+    "src/*",
+    "debug/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ]
 }

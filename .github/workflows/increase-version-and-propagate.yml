@@ -1,0 +1,31 @@
+name: Version Increment
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      - run: git config user.name "$GITHUB_ACTOR"
+      - run: npm version patch -m "v%s"
+      - run: VERSION=$(node -p "require('./package.json').version")
+      - run: git tag ${VERSION}
+      - run: git push "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git" --follow-tags
+      - run: git push "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git" --tags
+      - uses: everlytic/branch-merge@1.1.2
+        with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            source_ref: dev
+            target_branch: 'staging'
+            commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
+      - uses: everlytic/branch-merge@1.1.2
+        with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            source_ref: dev
+            target_branch: 'storybook'
+            commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
