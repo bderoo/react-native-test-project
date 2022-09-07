@@ -1,5 +1,14 @@
 apply plugin: "com.android.application"
 
+project.ext.envConfigFiles = [
+        debug         : ".env.debugExample",
+        releaseDev    : ".env.dev",
+        releaseStaging: ".env.stg",
+        release       : ".env.prd",
+        storybook     : ".env.storybook"
+]
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
+
 import com.android.build.OutputFile
 import org.apache.tools.ant.taskdefs.condition.Os
 
@@ -83,7 +92,6 @@ project.ext.react = [
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
-apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 /**
  * Set this to true to create two separate APKs instead of one:

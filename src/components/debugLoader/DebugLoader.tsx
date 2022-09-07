@@ -18,7 +18,7 @@ const DebugLoader = (): JSX.Element | null => {
             { title: 'logout', onPress: logout },
             {
               title: 'network',
-              onPress: () => navigate(Roots.__NetworkRequests),
+              onPress: () => navigate(Roots.DebugStack, { screen: Roots.__NetworkRequests }),
             },
           ]}
         />
