@@ -1,14 +1,14 @@
+import SvgIcon from '@components/svgIcon/SvgIcon'
+import { Icons } from '@constants/images'
 import navigationStyles from '@navigation/styles'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import NetworkItem from '@screens/networkItem'
+import NetworkRequests from '@screens/networkRequests'
 import { goBack } from '@stores/NavigationStore'
 import React from 'react'
 import { Pressable, View } from 'react-native'
 
-import SvgIcon from '@/components/svgIcon/SvgIcon'
-import { Icons } from '@/constants/images'
 import { Roots, RootStackParamList } from '@/navigation'
-import NetworkItem from '@/screens/networkItem'
-import NetworkRequests from '@/screens/networkRequests'
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
