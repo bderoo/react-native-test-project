@@ -2,7 +2,7 @@ import RNConfig from 'react-native-config'
 
 // eslint-disable-next-line no-restricted-imports
 import packageJSON from '../package.json'
-console.log(RNConfig.APP_ENV)
+
 const config = {
   STORYBOOK: RNConfig.STORYBOOK === 'true',
   GIT_REVISION_SHA: RNConfig.GIT_REVISION_SHA || 'n/a',
