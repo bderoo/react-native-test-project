@@ -3,7 +3,6 @@ import {
   proxy, ref,
 } from 'valtio'
 
-import Config from '@/config'
 import { Roots, RootStackParamList } from '@/navigation'
 
 const navigationRef = createNavigationContainerRef<RootStackParamList>()
