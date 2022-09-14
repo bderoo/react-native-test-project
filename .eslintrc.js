@@ -70,8 +70,10 @@ module.exports = {
       'never',
     ],
     'max-len': [
-      1,
-      200,
+      'warn',
+      {
+        code: 80,
+      },
     ],
     'max-lines': [
       'error',
