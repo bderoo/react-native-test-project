@@ -5,7 +5,7 @@ export interface RootStackParamList extends ParamListBase {
   __base: Record<string, unknown>,
   __RequestInfo: {
     request: NetworkRequest,
-  }
+  },
 }
 
 // Roots with __ are for debugging purposes only
