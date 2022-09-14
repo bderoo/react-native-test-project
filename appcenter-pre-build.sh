@@ -21,11 +21,10 @@ then
   sed -i '/\/\/ \@\@SECTION STORYBOOK/,/\/\/ \@\@ENDSECTION STORYBOOK/{//!d}' src/App.tsx
 fi
 
-# If we are in prod mode we should remove all debug modules
+# If we are in production mode we should remove all debug modules
 if [ "$APP_ENV" = "prd" ]
 then
   echo "Removing debug modules"
-  # TO DO: Remove debug modules
   echo "Removing debug folder"
   rm -rf debug/
   echo "Removing debug navigator"
