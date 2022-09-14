@@ -41,9 +41,11 @@ const BaseNavigator = (): JSX.Element => {
     <Stack.Screen name={Roots.Login} component={Login} options={headerOptions(() => null, true)} />
   )
 
+  // @@SECTION DEBUG
   const debugScreens = Config.DEBUG_ENABLED && (
     <Stack.Screen name={Roots.DebugStack} component={DebugNavigator} />
   )
+  // @@ENDSECTION DEBUG
   return (
     <Stack.Navigator screenOptions={{
       gestureEnabled: false,

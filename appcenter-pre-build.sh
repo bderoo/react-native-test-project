@@ -26,4 +26,18 @@ if [ "$APP_ENV" = "prd" ]
 then
   echo "Removing debug modules"
   # TO DO: Remove debug modules
+  echo "Removing debug folder"
+  rm -rf debug/
+  echo "Removing debug navigator"
+  sed -i '/import DebugNavigator/d' src/navigation/BaseNavigator.tsx
+  sed -i '/{debugScreens}/d' src/navigation/BaseNavigator.tsx
+  sed -i '/\/\/ \@\@SECTION DEBUG/,/\/\/ \@\@ENDSECTION DEBUG/{//!d}' src/navigation/BaseNavigator.tsx
+  sed -i '/import { NetworkRequest/d' src/navigation/index.ts
+  sed -i '/\/\/ \@\@SECTION DEBUG/,/\/\/ \@\@ENDSECTION DEBUG/{//!d}' src/navigation/index.ts
+  echo "Removing debug loader"
+  sed -i '/import DebugLoader/d' src/App.tsx
+  sed -i '/<DebugLoader \/>/d' src/App.tsx
+  rm -rf src/components/debugLoader
+  echo "Removing debug launcher in src/App.tsx"
+  sed -i '/\/\/ \@\@SECTION DEBUG/,/\/\/ \@\@ENDSECTION DEBUG/{//!d}' src/App.tsx
 fi
