@@ -44,10 +44,13 @@ const App = () => {
 }
 
 const start = async () => {
+  // @@SECTION STORYBOOK
   if (Config.STORYBOOK) {
     const storybook = require('../storybook').start
     storybook()
-  } else {
+  }
+  // @@ENDSECTION STORYBOOK
+  if (!Config.STORYBOOK) {
     if (Config.DEBUG_ENABLED) {
       const { networkRequestStore } = await import('@stores/NetworkRequestStore')
       const snap = snapshot(networkRequestStore)
