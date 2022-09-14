@@ -86,25 +86,25 @@ module.exports = function (plop) {
       },
       {
         type: 'append',
-        path: 'src/constants/index.ts',
-        pattern: /(?=\n}\n)/,
+        path: 'src/navigation/index.ts',
+        pattern: /(?=\n\s+\/\/ ROOTS APPEND)/,
         template: '  {{properCase name}} = \'{{properCase name}}\',',
       },
       {
         type: 'append',
-        path: 'src/screens/navigator.tsx',
+        path: 'src/navigation/BaseNavigator.tsx',
         pattern: /(?=\n\nconst Stack)/,
         template: 'import {{properCase name}} from \'@/screens/{{name}}\'',
       },
       {
         type: 'append',
-        path: 'src/screens/navigator.tsx',
+        path: 'src/navigation/BaseNavigator.tsx',
         pattern: /(?=\n\s+<\/Stack.Navigator>)/,
-        template: '    <Stack.Screen\n'
-          + '      name={Roots.{{properCase name~}} }\n'
-          + '      component={ {{~properCase name~}} }\n'
-          + '      options={headerOptions(() => null, true)}\n'
-          + '    />',
+        template: '      <Stack.Screen\n'
+          + '        name={Roots.{{properCase name~}} }\n'
+          + '        component={ {{~properCase name~}} }\n'
+          + '        options={headerOptions(() => null, true)}\n'
+          + '      />',
       },
       {
         type: 'append',

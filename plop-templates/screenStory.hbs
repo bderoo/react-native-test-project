@@ -1,9 +1,16 @@
 import { storiesOf } from '@storybook/react-native'
 import * as React from 'react'
 
+import { Roots } from '@/navigation'
+
 import {{properCase name}} from '.'
 
 storiesOf('NEEDS_CATEGORY', module)
   .add('{{spaceCase name}}', () => (
-    <{{properCase name}} />
+    <{{properCase name}}
+      route=\{{
+        key: Roots.{{properCase name}},
+        name: Roots.{{properCase name}},
+      }}
+    />
   ))
