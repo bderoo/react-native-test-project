@@ -13,6 +13,7 @@
     "moduleResolution": "node",
     "noEmit": true,
     "strict": true,
+    "strictNullChecks": true,
     "resolveJsonModule": true,
     "target": "esnext",
     "baseUrl": ".",
