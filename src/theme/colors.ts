@@ -59,10 +59,14 @@ const Colors = {
   shadow: 'rgba(51, 51, 51, 0.15)',
 }
 
-export const colorWithOpacity = (rgbColor: ValueOf<typeof Colors>, opacity: number): string => {
+export const colorWithOpacity = (
+  rgbColor: ValueOf<typeof Colors>,
+  opacity: number,
+): string => {
   if (rgbColor.includes(',')) {
     const alpha = Math.min(Math.max(opacity, 0), 1)
-    const rgbToArray = rgbColor.slice(rgbColor.indexOf('(') + 1, rgbColor.indexOf(')'))
+    const rgbToArray = rgbColor
+      .slice(rgbColor.indexOf('(') + 1, rgbColor.indexOf(')'))
       .split(',')
     if (rgbToArray && rgbToArray.length >= 3) {
       const red = parseInt(rgbToArray[0], 10)

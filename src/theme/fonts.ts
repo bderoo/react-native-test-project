@@ -3,6 +3,8 @@ import { StyleSheet } from 'react-native'
 import Colors from './colors'
 import { tabletOrPhone } from './metrics'
 
+export type FontWeightT = '300' | '400' | '500' | '600' | '700'
+
 export const FontFamilies = {
   italic: 'Poppins-Italic',
   black: 'Poppins-Black', // 900
@@ -36,7 +38,7 @@ export const LineHeight = {
   small: (fontSize = FontSize.small): number => fontSize * 1.5,
 }
 
-export const FontWeight: Record<string, '300' | '400' | '500' | '600' | '700'> = {
+export const FontWeight: Record<string, FontWeightT> = {
   light: '300',
   regular: '400',
   medium: '500',

@@ -31,7 +31,8 @@ const NetworkRequestBasicInfo = ({ request }: Props) => {
   if (request.startTime && request.endTime) {
     const newDuration = request.endTime - request.startTime
     if (newDuration > 59999) {
-      duration = `${Math.round(((newDuration / 60000) + Number.EPSILON) * 1000) / 1000}m`
+      const a = (newDuration / 60000) + Number.EPSILON
+      duration = `${Math.round(a * 1000) / 1000}m`
     } else if (newDuration > 9999) {
       duration = `${newDuration / 1000}s`
     } else {

@@ -1,4 +1,7 @@
-import { createNavigationContainerRef, NavigationContainerRefWithCurrent } from '@react-navigation/native'
+import {
+  createNavigationContainerRef,
+  NavigationContainerRefWithCurrent,
+} from '@react-navigation/native'
 import {
   proxy, ref,
 } from 'valtio'

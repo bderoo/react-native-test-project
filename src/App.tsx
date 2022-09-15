@@ -53,7 +53,9 @@ const start = async () => {
   if (!Config.STORYBOOK) {
     // @@SECTION DEBUG
     if (Config.DEBUG_ENABLED) {
-      const { networkRequestStore } = await import('@stores/NetworkRequestStore')
+      const {
+        networkRequestStore,
+      } = await import('@stores/NetworkRequestStore')
       const snap = snapshot(networkRequestStore)
       snap.startInterceptor()
       require('@stores/NavigationStore.debug')

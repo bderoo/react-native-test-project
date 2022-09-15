@@ -8,12 +8,36 @@ module.exports = {
         alias: {
           '@root': './',
           '@': ['./src', './debug', './generated'],
-          '@components': ['./src/components', './debug/components', './generated/components'],
-          '@screens': ['./src/screens', './debug/screens', './generated/screens'],
-          '@stores': ['./src/stores', './debug/stores', './generated/stores'],
-          '@theme': ['./src/theme', './debug/theme', './generated/theme'],
-          '@constants': ['./src/constants', './debug/constants', './generated/constants'],
-          '@navigation': ['./src/navigation', './debug/navigation', './generated/navigation'],
+          '@components': [
+            './src/components',
+            './debug/components',
+            './generated/components',
+          ],
+          '@screens': [
+            './src/screens',
+            './debug/screens',
+            './generated/screens',
+          ],
+          '@stores': [
+            './src/stores',
+            './debug/stores',
+            './generated/stores',
+          ],
+          '@theme': [
+            './src/theme',
+            './debug/theme',
+            './generated/theme',
+          ],
+          '@constants': [
+            './src/constants',
+            './debug/constants',
+            './generated/constants',
+          ],
+          '@navigation': [
+            './src/navigation',
+            './debug/navigation',
+            './generated/navigation',
+          ],
         },
       },
     ],

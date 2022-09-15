@@ -10,7 +10,12 @@ type Props = {
 }
 
 const Spinner = ({ isTransparent }: Props) => (
-  <View style={[styles.wrapper, isTransparent ? styles.transparentBackground : styles.solidBackground]}>
+  <View
+    style={[
+      styles.wrapper,
+      isTransparent ? styles.transparentBackground : styles.solidBackground,
+    ]}
+  >
     <ActivityIndicator size="large" color={Colors.primary} />
   </View>
 )

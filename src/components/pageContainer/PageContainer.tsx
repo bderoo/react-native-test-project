@@ -1,7 +1,8 @@
 import Spinner from '@components/spinner'
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { View, ViewStyle } from 'react-native'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { KeyboardAwareScrollView }
+  from 'react-native-keyboard-aware-scroll-view'
 
 import styles, { StyledSafeAreaView } from './styles'
 
@@ -13,7 +14,7 @@ const PageContainer = ({
   viewWrapperStyle,
   isLoading,
 }: {
-  children?: React.ReactElement | Array<React.ReactElement | null> | null | ReactNode,
+  children?: GenericComponent,
   center?: boolean,
   style?: ViewStyle,
   safeAreaViewStyle?: ViewStyle,

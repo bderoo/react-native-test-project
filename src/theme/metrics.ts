@@ -1,14 +1,19 @@
 import { Dimensions, Platform } from 'react-native'
 import { isTablet } from 'react-native-device-info'
-import { getBottomSpace, getStatusBarHeight, isIphoneX } from 'react-native-iphone-x-helper'
+import { getBottomSpace, getStatusBarHeight, isIphoneX }
+  from 'react-native-iphone-x-helper'
 
 const {
   width,
   height,
 } = Dimensions.get('window')
 
-export const tabletOrPhone = (tablet: number, phone: number): number => (isTablet() ? tablet : phone)
-export const isiPhoneX = (iPhoneX: number, regular: number): number => (isIphoneX() ? iPhoneX : regular)
+export const tabletOrPhone = (tablet: number, phone: number): number => (
+  isTablet() ? tablet : phone
+)
+export const isiPhoneX = (iPhoneX: number, regular: number): number => (
+  isIphoneX() ? iPhoneX : regular
+)
 
 const SmallScreenWidth = 375 // iPhone 8 - 4.7 inches
 const SmallScreenHeight = 667 // iPhone 8 - 4.7 inches
@@ -33,7 +38,9 @@ const Metrics = {
   statusBarHeight: (safe = false): number => getStatusBarHeight(safe),
   iPhoneXBottomSpaceHeight: getBottomSpace(),
   navigationHeight: innerNavigationHeight,
-  screenHeightWithNavigation: height - getStatusBarHeight(false) - innerNavigationHeight,
+  screenHeightWithNavigation: height
+    - getStatusBarHeight(false)
+    - innerNavigationHeight,
   safeMarginTop: (regular: number, safe = false): number => {
     if (isIphoneX()) {
       return getStatusBarHeight(safe) + regular
@@ -49,7 +56,9 @@ const Metrics = {
   isiPhone: Platform.OS === 'ios',
   osVersion: Platform.Version,
   footerHeight: isiPhoneX(90, 75),
-  headerHeight: Platform.OS === 'android' ? 56 : (getStatusBarHeight(true) + 44),
+  headerHeight: Platform.OS === 'android'
+    ? 56
+    : (getStatusBarHeight(true) + 44),
   tabBarHeight: isiPhoneX(getBottomSpace() + 64, 64),
   isiPhoneX,
   isSmallScreen,

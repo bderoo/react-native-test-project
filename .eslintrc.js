@@ -42,12 +42,8 @@ module.exports = {
     'jsx-a11y/anchor-is-valid': [
       'error',
       {
-        components: [
-          'Link',
-        ],
-        specialLink: [
-          'to',
-        ],
+        components: ['Link'],
+        specialLink: ['to'],
       },
     ],
     'jsx-a11y/label-has-for': [
@@ -65,27 +61,18 @@ module.exports = {
         allowChildren: false,
       },
     ],
-    semi: [
-      'error',
-      'never',
-    ],
+    semi: ['error', 'never'],
     'max-len': [
       'warn',
       {
         code: 80,
+        ignoreComments: true,
       },
     ],
-    'max-lines': [
-      'error',
-      400,
-    ],
+    'max-lines': ['error', 400],
     'global-require': 0,
-    'no-underscore-dangle': [
-      'off',
-    ],
-    'react/no-unescaped-entities': [
-      'off',
-    ],
+    'no-underscore-dangle': ['off'],
+    'react/no-unescaped-entities': ['off'],
     'no-plusplus': [
       'error',
       {

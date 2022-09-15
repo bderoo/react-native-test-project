@@ -3,7 +3,11 @@ import { StyleSheet } from 'react-native'
 
 import { Colors, Metrics } from '@/theme'
 
-export const LevelView = styled.View(({ level }: { level: 'warn' | 'error' }) => {
+type LevelViewProps = {
+  level: 'warn' | 'error'
+}
+
+export const LevelView = styled.View(({ level }: LevelViewProps) => {
   let backgroundColor = Colors.backgroundGray
   if (level === 'warn') {
     backgroundColor = Colors.warning
@@ -49,6 +53,13 @@ const styles = StyleSheet.create({
     color: Colors.almostBlack,
     textAlign: 'center',
     textAlignVertical: 'center',
+  },
+  pageContainer: {
+    paddingHorizontal: Metrics.xxxSmall,
+  },
+  bottomContainer: {
+    paddingHorizontal: 0,
+    paddingVertical: 0,
   },
 })
 

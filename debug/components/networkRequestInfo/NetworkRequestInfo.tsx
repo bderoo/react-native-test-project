@@ -21,25 +21,38 @@ type Props = {
 
 const NetworkRequestInfo = ({ request }: Props) => {
   const [response, setResponse] = useState<string>()
-  const escapeQuotes = useCallback((str: string) => str.replace?.(/'/g, '\\\''), [])
+  const escapeQuotes = useCallback((str: string) => (
+    str.replace?.(/'/g, '\\\'')
+  ), [])
 
   const curl = useMemo(() => {
-    let headersPart = request.requestHeaders && Object.entries(request.requestHeaders)
-      .map(([key, value]) => `'${key}: ${escapeQuotes(value)}'`)
-      .join(' -H ')
+    let headersPart = request.requestHeaders
+      && Object.entries(request.requestHeaders)
+        .map(([key, value]) => `'${key}: ${escapeQuotes(value)}'`)
+        .join(' -H ')
     headersPart = headersPart ? `-H ${headersPart}` : ''
 
     const body = request.dataSent && escapeQuotes(request.dataSent)
 
-    const methodPart = request.method !== 'GET' ? `-X${request.method.toUpperCase()}` : ''
+    const methodPart = request.method !== 'GET'
+      ? `-X${request.method.toUpperCase()}` : ''
     const bodyPart = body ? `-d '${body}'` : ''
 
-    const parts = ['curl', methodPart, headersPart, bodyPart, `'${request.url}'`]
+    const parts = [
+      'curl',
+      methodPart,
+      headersPart,
+      bodyPart,
+      `'${request.url}'`,
+    ]
 
     return parts.filter(Boolean).join(' ')
   }, [request])
 
-  const renderString = useCallback((jsonString: string | undefined, responseBodyType: string | null) => {
+  const renderString = useCallback((
+    jsonString: string | undefined,
+    responseBodyType: string | null,
+  ) => {
     if (jsonString) {
       if (responseBodyType === 'application/json') {
         try {
@@ -90,7 +103,9 @@ const NetworkRequestInfo = ({ request }: Props) => {
     }
   }, [])
 
-  const stringify = useCallback((str?: string) => JSON.stringify(parseData(str), null, 2), [])
+  const stringify = useCallback((str?: string) => (
+    JSON.stringify(parseData(str), null, 2)
+  ), [])
 
   const responseBodyString = useCallback(async () => {
     if (request.responseType === 'blob') {
@@ -118,7 +133,8 @@ const NetworkRequestInfo = ({ request }: Props) => {
   return (
     <View>
       <NetworkRequestBasicInfo request={request} />
-      {request.requestHeaders && Object.keys(request.requestHeaders).length > 0 && (
+      {request.requestHeaders
+        && Object.keys(request.requestHeaders).length > 0 && (
         <>
           <View style={styles.header}>
             <H3>{Strings.internal.requestHeaders}</H3>
@@ -136,7 +152,8 @@ const NetworkRequestInfo = ({ request }: Props) => {
           </View>
         </>
       )}
-      {request.responseHeaders && Object.keys(request.responseHeaders).length > 0 && (
+      {request.responseHeaders
+        && Object.keys(request.responseHeaders).length > 0 && (
         <>
           <View style={styles.header}>
             <H3>{Strings.internal.responseHeaders}</H3>

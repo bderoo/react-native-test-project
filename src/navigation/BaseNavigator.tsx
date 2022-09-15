@@ -36,9 +36,17 @@ const headerOptions = (
 const BaseNavigator = (): JSX.Element => {
   const { accessToken, me } = useSnapshot(authStore)
   const primaryScreens = accessToken && me && me.id ? (
-    <Stack.Screen name={Roots.Home} component={Home} options={{ headerShown: false }} />
+    <Stack.Screen
+      name={Roots.Home}
+      component={Home}
+      options={{ headerShown: false }}
+    />
   ) : (
-    <Stack.Screen name={Roots.Login} component={Login} options={headerOptions(() => null, true)} />
+    <Stack.Screen
+      name={Roots.Login}
+      component={Login}
+      options={headerOptions(() => null, true)}
+    />
   )
 
   // @@SECTION DEBUG

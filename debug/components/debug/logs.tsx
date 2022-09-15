@@ -23,9 +23,18 @@ type State = {
   search: string,
 }
 
-const isNavigationAction = (a: any): a is NavigationAction => a.type !== undefined && typeof a.type === 'string'
+type Message = AxiosError | NavigationAction | Array<string> | string
 
-const formatMessage = (message: AxiosError | NavigationAction | Array<string> | string, level: 'info' | 'error' | 'warn' | 'log' | 'silent' = 'log'): React.ReactElement => {
+const isNavigationAction = (a: Message): a is NavigationAction => (
+  typeof a !== 'string'
+    && !(a instanceof AxiosError)
+    && !Array.isArray(a)
+)
+
+const formatMessage = (
+  message: Message,
+  level: 'info' | 'error' | 'warn' | 'log' | 'silent' = 'log',
+): React.ReactElement => {
   const textColor = Colors.white
   if (typeof message === 'string') {
     return <Body key={Math.random()} color={textColor}>{message}</Body>
@@ -111,7 +120,8 @@ class Logs extends React.Component<Props, State> {
     const { logs } = this.props
     const { search } = this.state
 
-    const searchedLogs = search ? logs.filter((i) => `${i.message}`.indexOf(search) >= 0) : logs
+    const searchedLogs = search ? logs
+      .filter((i) => `${i.message}`.indexOf(search) >= 0) : logs
 
     return (
       <SafeAreaView>

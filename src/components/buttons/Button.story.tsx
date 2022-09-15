@@ -47,7 +47,9 @@ storiesOf('Components', module)
       <View style={styles.separator}>
         <PrimaryButton
           title="Button with right icon"
-          rightComponent={<SvgIcon image={Icons.arrowRight} color={Colors.black} />}
+          rightComponent={(
+            <SvgIcon image={Icons.arrowRight} color={Colors.black} />
+          )}
           onPress={() => {
           }}
         />

@@ -48,9 +48,21 @@ type NetworkRequestStore = {
   getRequest: (id?: number) => NetworkRequest | undefined
   updateRequest: (index: number, update: Partial<NetworkRequest>) => void
   setRequestHeader: (header: string, value: string, xhr: XHR) => void
-  setResponseHeader: (responseContentType: string, responseSize: number, responseHeaders: Headers, xhr: XHR) => void
+  setResponseHeader: (
+    responseContentType: string,
+    responseSize: number,
+    responseHeaders: Headers,
+    xhr: XHR
+  ) => void
   sendCallback: (data: string, xhr: XHR) => void
-  setResponse: (status: number, timeout: string, response: string, responseURL: string, responseType: string, xhr: XHR) => void
+  setResponse: (
+    status: number,
+    timeout: string,
+    response: string,
+    responseURL: string,
+    responseType: string,
+    xhr: XHR
+  ) => void
 }
 
 const urlAliases = {
@@ -71,17 +83,24 @@ export const networkRequestStore: NetworkRequestStore = proxy<NetworkRequestStor
   currentXHRId: 0,
   xhrIdMap: {},
   startInterceptor() {
-    XHRInterceptor.setOpenCallback(networkRequestStore.addRequest)
-    XHRInterceptor.setRequestHeaderCallback(networkRequestStore.setRequestHeader)
-    XHRInterceptor.setHeaderReceivedCallback(networkRequestStore.setResponseHeader)
-    XHRInterceptor.setSendCallback(networkRequestStore.sendCallback)
-    XHRInterceptor.setResponseCallback(networkRequestStore.setResponse)
-    XHRInterceptor.enableInterception()
+    XHRInterceptor
+      .setOpenCallback(networkRequestStore.addRequest)
+    XHRInterceptor
+      .setRequestHeaderCallback(networkRequestStore.setRequestHeader)
+    XHRInterceptor
+      .setHeaderReceivedCallback(networkRequestStore.setResponseHeader)
+    XHRInterceptor
+      .setSendCallback(networkRequestStore.sendCallback)
+    XHRInterceptor
+      .setResponseCallback(networkRequestStore.setResponse)
+    XHRInterceptor
+      .enableInterception()
   },
   addRequest(method: RequestMethod, url: string, xhr: XHR) {
     const updatedXHRId = networkRequestStore.currentXHRId
     xhr._index = networkRequestStore.currentXHRId
-    networkRequestStore.xhrIdMap[updatedXHRId] = networkRequestStore.requests.length
+    networkRequestStore.xhrIdMap[updatedXHRId] = networkRequestStore
+      .requests.length
     networkRequestStore.currentXHRId = updatedXHRId + 1
     const newUrl = simplifyUrl(url)
     const newRequest: NetworkRequest = {
@@ -94,26 +113,29 @@ export const networkRequestStore: NetworkRequestStore = proxy<NetworkRequestStor
   },
   getRequest(id: number | undefined) {
     if (id === undefined) return undefined
-    const requestIndex = networkRequestStore.requests.length - networkRequestStore.xhrIdMap[id] - 1
+    const requestIndex = networkRequestStore.requests.length
+      - networkRequestStore.xhrIdMap[id] - 1
     return networkRequestStore.requests[requestIndex]
   },
   updateRequest(index: number, update: Partial<NetworkRequest>) {
     const networkInfo = networkRequestStore.getRequest(index)
     if (networkInfo) {
-      networkRequestStore.requests = networkRequestStore.requests.map((request, i) => {
-        if (i === index) {
-          return {
-            ...request,
-            ...update,
+      networkRequestStore.requests = networkRequestStore.requests
+        .map((request, i) => {
+          if (i === index) {
+            return {
+              ...request,
+              ...update,
+            }
           }
-        }
-        return request
-      })
+          return request
+        })
     }
   },
   setRequestHeader(header: string, value: string, xhr: XHR) {
     const networkInfo = networkRequestStore.getRequest(xhr._index)
-    const oldRequest = networkRequestStore.requests.find((request) => request.id === networkInfo?.id)
+    const oldRequest = networkRequestStore.requests
+      .find((request) => request.id === networkInfo?.id)
     if (oldRequest) {
       const update = {
         requestHeaders: {
@@ -124,7 +146,12 @@ export const networkRequestStore: NetworkRequestStore = proxy<NetworkRequestStor
       networkRequestStore.updateRequest(xhr._index, update)
     }
   },
-  setResponseHeader(responseContentType: string, responseSize: number, responseHeaders: Headers, xhr: XHR) {
+  setResponseHeader(
+    responseContentType: string,
+    responseSize: number,
+    responseHeaders: Headers,
+    xhr: XHR,
+  ) {
     networkRequestStore.updateRequest(xhr._index, {
       responseContentType,
       responseSize,
@@ -137,7 +164,14 @@ export const networkRequestStore: NetworkRequestStore = proxy<NetworkRequestStor
       dataSent: data,
     })
   },
-  setResponse(status: number, timeout: string, response: string, responseURL: string, responseType: string, xhr: XHR) {
+  setResponse(
+    status: number,
+    timeout: string,
+    response: string,
+    responseURL: string,
+    responseType: string,
+    xhr: XHR,
+  ) {
     networkRequestStore.updateRequest(xhr._index, {
       endTime: Date.now(),
       status,

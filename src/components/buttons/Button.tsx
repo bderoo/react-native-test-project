@@ -10,7 +10,12 @@ import { Icons } from '@/constants/images'
 import { Colors } from '@/theme'
 
 import {
-  defaultStyles, primaryStyles, secondaryArrowButtonStyles, secondaryStyles, signUpStyles, whiteBorderStyles,
+  defaultStyles,
+  primaryStyles,
+  secondaryArrowButtonStyles,
+  secondaryStyles,
+  signUpStyles,
+  whiteBorderStyles,
 } from './styles'
 
 interface BaseProps {
@@ -60,7 +65,15 @@ export const Button = ({
       onPressIn={() => setPressed(true)}
       onPressOut={() => setPressed(false)}
     >
-      <H3 style={[defaultStyles.baseTextStyle, pressed ? pressedTextStyle : textStyle]} textAlign="center">{title}</H3>
+      <H3
+        style={[
+          defaultStyles.baseTextStyle,
+          pressed ? pressedTextStyle : textStyle,
+        ]}
+        textAlign="center"
+      >
+        {title}
+      </H3>
       {rightComponent}
     </Pressable>
   )

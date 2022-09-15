@@ -41,7 +41,9 @@ const valueOrNA = (label: string, value: string | undefined) => {
 
 const toNiceObject = (obj: Record<string, unknown>) => {
   const entries = Object.keys(obj)
-  const filtered = entries.filter((key) => typeof obj[key as keyof typeof obj] !== functionName)
+  const filtered = entries.filter(
+    (key) => typeof obj[key as keyof typeof obj] !== functionName,
+  )
     .map((key) => ({ [key]: obj[key as keyof typeof obj] }))
   return filtered.reduce((obj, item) => ({ ...obj, ...item }), {})
 }
@@ -111,7 +113,7 @@ const Debug = ({ actions }: Props) => {
         visible={modalVisible}
         onRequestClose={toggleModalVisible}
       >
-        <PageContainer viewWrapperStyle={{ paddingHorizontal: Metrics.xxxSmall }}>
+        <PageContainer viewWrapperStyle={styles.pageContainer}>
           <ScrollView>
             <View>
               <Pressable onPress={toggleModalVisible}>
@@ -128,7 +130,9 @@ const Debug = ({ actions }: Props) => {
                     title="Copy stores and logs"
                     onPress={() => {
                       console.warn('Copied to clipboard')
-                      Clipboard.setString(JSON.stringify({ appInfo, stores: {}, logs }, null, 2))
+                      Clipboard.setString(
+                        JSON.stringify({ appInfo, stores: {}, logs }, null, 2),
+                      )
                       Clipboard.setString(JSON.stringify({
                         appInfo, stores: { }, logs,
                       }, (key, value) => {
@@ -158,7 +162,7 @@ const Debug = ({ actions }: Props) => {
                     hiddenContent={(
                       <Logs logs={logs as Array<Log>} />
                     )}
-                    bottomContainerStyle={{ paddingHorizontal: 0, paddingVertical: 0 }}
+                    bottomContainerStyle={styles.bottomContainer}
                   />
                 </View>
               </View>

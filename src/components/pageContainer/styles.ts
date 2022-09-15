@@ -3,7 +3,11 @@ import { StyleSheet } from 'react-native'
 
 import { Colors, Metrics } from '@/theme'
 
-export const StyledSafeAreaView = styled.SafeAreaView(({ center }: { center: boolean | undefined }) => ({
+type Props = {
+  center?: boolean
+}
+
+export const StyledSafeAreaView = styled.SafeAreaView(({ center }: Props) => ({
   flex: 1,
   justifyContent: center ? 'center' : undefined,
   backgroundColor: Colors.backgroundGray,
